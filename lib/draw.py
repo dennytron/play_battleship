@@ -2,8 +2,8 @@
 from lib.models import LETTERS_TO_INTS, Cell, Ship
 
 
-_ACROSS: list[str] = [str(n) for n in LETTERS_TO_INTS.values()]
-_DOWN: list[str] = list(LETTERS_TO_INTS.keys())
+_ACROSS: list[str] = [str(number) for letter, number in LETTERS_TO_INTS.items() if number < 11]
+_DOWN: list[str] = [letter for letter, number in LETTERS_TO_INTS.items() if number < 11]
 
 
 def generate_map(board: dict[Cell, int], ships: dict[int, Ship], hits: list[Cell]) -> None:

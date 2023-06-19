@@ -1,16 +1,30 @@
 """input and output operations"""
+import sys
+from pathlib import Path
+
 from lib.models import Cell, Ship
 
 
-def read_commands() -> list[list[str]]:
+def read_commands(commands_file: Path) -> list[list[str]]:
     """parse the input file"""
-    with open("commands.txt", encoding="UTF-8") as reader:
-        return [
+    if not commands_file.exists():
+        print(f"Warning: commands file not found at {commands_file.absolute()}")
+        sys.exit(1)
+
+    with open(commands_file, encoding="UTF-8") as reader:
+        commands: list[list[str]] = [
             parts
             for line in reader
             if (parts := line.strip().split())
             if parts[0].upper() in ("PLACE_SHIP", "FIRE")
         ]
+
+        if not commands:
+            print("Please provide a valid list of commands in your commands file")
+            print("PLACE_SHIP and FIRE are the valid commands")
+            sys.exit(1)
+
+        return commands
 
 
 def _count_remaining_ships(ships: dict[int, Ship]) -> int:
@@ -27,9 +41,10 @@ def get_shots(input_tokens: list[list[str]]) -> list[Cell]:
     ]
 
 
-def display_ship_inventory(ships: dict[int, Ship]) -> None:
+def display_ship_inventory(ships: dict[int, Ship], board: dict[Cell, int]) -> None:
     """list all the ships that were placed"""
-    for ship in ships.values():
+    for ship_key in set(board.values()):
+        ship: Ship = ships[ship_key]
         print(f"...Placed {ship.kind}")
 
 

@@ -68,7 +68,7 @@ def _ship_placement_is_valid(
             print(
                 f"Error placing ship "
                 f"{current_ship.start} / {current_ship.direction} "
-                f"- Ship off board! {cell.location}"
+                f"- Ship off board => {cell.location}"
             )
             return False
 

@@ -10,6 +10,7 @@ PLACE_SHIP Cruiser down G9
 PLACE_SHIP Cruiser down A10
 PLACE_SHIP Cruiser test123 D10
 PLACE_SHIP Cruiser right D10
+PLACE_SHIP Cruiser down J10
 
 FIRE F1
 FIRE A1
