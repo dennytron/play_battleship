@@ -2,9 +2,9 @@
 from lib.models import Cell, Ship
 
 
-def read_text() -> list[list[str]]:
+def read_commands() -> list[list[str]]:
     """parse the input file"""
-    with open("example_in.txt", encoding="UTF-8") as reader:
+    with open("commands.txt", encoding="UTF-8") as reader:
         return [
             line.strip().split()
             for line in reader

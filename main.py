@@ -9,7 +9,7 @@ from lib.models import Ship, Cell
 
 def main() -> None:
     """entry-point function"""
-    input_tokens: list[list[str]] = io.read_text()
+    input_tokens: list[list[str]] = io.read_commands()
     ships: dict[int, Ship] = placement.create_ships(input_tokens)
     display_ship_inventory(ships)
 
