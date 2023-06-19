@@ -1,19 +1,15 @@
 """application entry-point"""
+import lib.io
 from lib import placement
 from lib import hit
 from lib import draw
+from lib.io import display_ship_inventory
 from lib.models import Ship, Cell
-
-
-def display_ship_inventory(ships: dict[int, Ship]) -> None:
-    """list all the ships that were placed"""
-    for ship in ships.values():
-        print(f"...Placed {ship.kind}")
 
 
 def main() -> None:
     """entry-point function"""
-    ships: dict[int, Ship] = placement.create_ships(placement.read_text())
+    ships: dict[int, Ship] = placement.create_ships(lib.io.read_text())
     display_ship_inventory(ships)
 
     board: dict[Cell, int] = placement.fill_board(ships)

@@ -1,4 +1,5 @@
 """functions related to making hits on the board"""
+from lib.io import _report_hit
 from lib.models import Cell, Ship
 
 
@@ -13,14 +14,6 @@ def _try_to_hit(location: Cell, board: dict[Cell, int], ships: dict[int, Ship]) 
 def _count_remaining_ships(ships: dict[int, Ship]) -> int:
     """determine the number of ships still in play"""
     return len([ship for ship in ships.values() if not ship.is_sunk])
-
-
-def _report_hit(attempt, result, ships):
-    """report whether the attempt is successful"""
-    print(f"++ {result.kind} hit at {attempt.location}!")
-    if result.is_sunk:
-        print(f"++ {result.kind} sunk at {attempt.location}!")
-        print(f"++ {_count_remaining_ships(ships)} ships remain!")
 
 
 def attempt_hits(

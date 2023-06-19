@@ -90,12 +90,3 @@ def create_ships(lines: list[list[str]]) -> dict[int, Ship]:
     }
     assert ships
     return ships
-
-
-def read_text() -> list[list[str]]:
-    """parse the input file"""
-    with open("example_in.txt", encoding="UTF-8") as reader:
-        return [
-            line.strip().split()
-            for line in reader
-        ]
