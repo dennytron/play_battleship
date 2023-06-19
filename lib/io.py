@@ -5,10 +5,13 @@ from lib.models import Cell, Ship
 def read_commands() -> list[list[str]]:
     """parse the input file"""
     with open("commands.txt", encoding="UTF-8") as reader:
+        parts: list[str]
+
         return [
-            line.strip().split()
+            parts
             for line in reader
-            if line.strip()
+            if (parts := line.strip().split())
+            if parts[0].upper() in ("PLACE_SHIP", "FIRE")
         ]
 
 
