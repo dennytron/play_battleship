@@ -2,15 +2,6 @@
 
 Provide the application a list of commands in a commands text file.
 
-*Requires Python 3.10 or Python3.11*
-
-**Running the Application with Python**
-```
-python3.11 main.py [optional commands file]
-```
-If no command file is provided as the first argument, the application will look
-for `commands.txt`
-
 *The Commands File Composition*
 
 Valid commands are PLACE_SHIP and FIRE.
@@ -26,7 +17,7 @@ PLACE_SHIP Destroyer right A1
 PLACE_SHIP Carrier down B2
 ```
 
-To make fire commands, supply a FIRE followed by
+To make fire commands, supply a FIRE command followed by
 - A location on the 10x10 grid (A1 through J10, where A=down and 10=across)
 
 For example:
@@ -34,6 +25,15 @@ For example:
 FIRE A1
 FIRE B2
 ```
+
+**Running the Application with Python**
+*Requires Python 3.10 or Python3.11*
+
+```
+python3.11 main.py [optional commands file]
+```
+If no command file is provided as the first argument, the application will look
+for `commands.txt` in the current working directory.
 
 **Running the Application in Docker**
 
