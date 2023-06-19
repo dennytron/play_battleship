@@ -11,7 +11,7 @@ def _try_to_hit(location: Cell, board: dict[Cell, int], ships: dict[int, Ship]) 
     return None
 
 
-def _count_remaining_ships(ships: dict[int, Ship]) -> int:
+def count_remaining_ships(ships: dict[int, Ship]) -> int:
     """determine the number of ships still in play"""
     return len([ship for ship in ships.values() if not ship.is_sunk])
 

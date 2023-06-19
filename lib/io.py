@@ -1,5 +1,5 @@
 """input and output operations"""
-from lib.hit import _count_remaining_ships
+from lib.hit import count_remaining_ships
 from lib.models import Ship
 
 
@@ -23,4 +23,4 @@ def _report_hit(attempt, result, ships):
     print(f"++ {result.kind} hit at {attempt.location}!")
     if result.is_sunk:
         print(f"++ {result.kind} sunk at {attempt.location}!")
-        print(f"++ {_count_remaining_ships(ships)} ships remain!")
+        print(f"++ {count_remaining_ships(ships)} ships remain!")
