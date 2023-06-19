@@ -1,9 +1,9 @@
 PLACE_SHIP Destroyer right A1
 PLACE_SHIP Carrier down B2
-PLACE_SHIP Carrier right I1
+PLACE_SHIP CARRIER right I1
 PLACE_SHIP Battleship down C4
-PLACE_SHIP Submarine right E6
-PLACE_SHIP Cruiser right H1
+PLACE_SHIP submarine right E6
+place_ship Cruiser right H1
 PLACE_SHIP Cruiser right H5
 PLACE_SHIP Cruiser down G9
 PLACE_SHIP Cruiser down G9
@@ -13,7 +13,7 @@ PLACE_SHIP Cruiser right D10
 PLACE_SHIP Cruiser down J10
 
 FIRE F1
-FIRE A1
+fire A1
 FIRE A2
 FIRE A2
 FIRE B2
