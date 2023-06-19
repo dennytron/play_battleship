@@ -8,6 +8,7 @@ def read_text() -> list[list[str]]:
         return [
             line.strip().split()
             for line in reader
+            if line.strip()
         ]
 
 
