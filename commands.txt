@@ -4,6 +4,12 @@ PLACE_SHIP Carrier right I1
 PLACE_SHIP Battleship down C4
 PLACE_SHIP Submarine right E6
 PLACE_SHIP Cruiser right H1
+PLACE_SHIP Cruiser right H5
+PLACE_SHIP Cruiser down G9
+PLACE_SHIP Cruiser down G9
+PLACE_SHIP Cruiser down A10
+PLACE_SHIP Cruiser test123 D10
+PLACE_SHIP Cruiser right D10
 
 FIRE F1
 FIRE A1

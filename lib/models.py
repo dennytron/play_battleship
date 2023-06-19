@@ -36,9 +36,9 @@ class Cell:
     @property
     def y_as_int(self) -> int:
         """returns the y value mapped to an integer"""
-        if self.location[0] not in VERTICAL_LETTERS_TO_INTS:
+        if self.location[0] not in LETTERS_TO_INTS:
             raise NotImplementedError(f"Letter not supported {self.location[0]}")
-        return VERTICAL_LETTERS_TO_INTS[self.location[0]]
+        return LETTERS_TO_INTS[self.location[0]]
 
 
 SHIP_TYPES: dict[str, int] = {
@@ -49,7 +49,7 @@ SHIP_TYPES: dict[str, int] = {
     "destroyer": 2
 }
 
-VERTICAL_LETTERS_TO_INTS: dict[str, int] = {
+LETTERS_TO_INTS: dict[str, int] = {
     "A": 1,
     "B": 2,
     "C": 3,
@@ -62,7 +62,7 @@ VERTICAL_LETTERS_TO_INTS: dict[str, int] = {
     "J": 10
 }
 
-VERTICAL_INTS_TO_LETTERS: dict[int, str] = {
+INTS_TO_LETTERS: dict[int, str] = {
     1: "A",
     2: "B",
     3: "C",

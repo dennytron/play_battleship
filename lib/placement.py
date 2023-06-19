@@ -1,5 +1,5 @@
 """functions managing the placement of ships"""
-from lib.models import VERTICAL_INTS_TO_LETTERS, SHIP_TYPES, Ship, Cell
+from lib.models import INTS_TO_LETTERS, SHIP_TYPES, Ship, Cell
 
 
 def fill_board(ships: dict[int, Ship]) -> dict[Cell, int]:
@@ -12,12 +12,16 @@ def fill_board(ships: dict[int, Ship]) -> dict[Cell, int]:
 
 
 def place_ship(ship: Ship, ships: dict[int, Ship], board: dict[Cell, int]) -> list[Cell]:
-    """this function returns a dictionary of yx location keys and int primary key"""
+    """this function returns a list of the cells on the board occupied by the ship"""
     start_cell: Cell = Cell(ship.start)
     start_x: int = start_cell.x_value
     start_y: int = start_cell.y_as_int
     current_ship_cells: list[Cell] = _generate_cells(ship, start_x, start_y)
-    _verify_ship_placement(current_ship_cells, board, ship, ships)
+    placement_is_valid: bool = _ship_placement_is_valid(ship, current_ship_cells, board, ships)
+
+    if not placement_is_valid:
+        return []
+
     return current_ship_cells
 
 
@@ -27,46 +31,48 @@ def _generate_cells(ship, start_x, start_y) -> list[Cell]:
         return [_get_cell(start_y, start_x + n) for n in range(0, ship.size)]
     if ship.direction == "down":
         return [_get_cell(start_y + n, start_x) for n in range(0, ship.size)]
-    raise NotImplementedError(f"Direction not implemented! {ship.direction}")
+
+    print(f"Warning! Direction not implemented! {ship.direction}")
+    return []
 
 
 def _get_cell(y_value: int, x_value: int) ->  Cell:
     """retrieve the cell at the xy location"""
-    str_cell: str = VERTICAL_INTS_TO_LETTERS[y_value] + str(x_value)
+    str_cell: str = INTS_TO_LETTERS[y_value] + str(x_value)
     return Cell(str_cell)
 
 
-def _verify_ship_placement(
+def _ship_placement_is_valid(
+        current_ship: Ship,
         current_ship_cells: list[Cell],
         board: dict[Cell, int],
-        current_ship: Ship,
-        all_ships: dict[int, Ship]):
+        all_ships: dict[int, Ship]) -> bool:
     """verify whether the ship is allowed to be placed on the board"""
-    cell: Cell
-
     for cell in current_ship_cells:
         cell_is_occupied: bool = cell in board
         ship_is_out_of_bounds: bool = cell.y_as_int > 10 or cell.x_value > 10
 
         if cell_is_occupied:
             # verify whether a ship is being placed at a location already occupied
-            # raise an exception if the cell is already occupied
             ship_key: int = board[cell]
             existing: Ship = all_ships[ship_key]
-            raise NotImplementedError(
+            print(
                 f"Error placing ship {current_ship.start} / {current_ship.direction} - "
                 f"Cell occupied at cell={cell.location} "
                 f"by ship => {existing.start} / {existing.direction}"
             )
+            return False
 
         if ship_is_out_of_bounds:
             # verify whether the player is placing a ship off the board
-            # should these ships be redirected to another file?
-            raise NotImplementedError(
+            print(
                 f"Error placing ship "
                 f"{current_ship.start} / {current_ship.direction} "
-                f"- Ship off board! {cell}"
+                f"- Ship off board! {cell.location}"
             )
+            return False
+
+    return True
 
 
 def _get_size(ship_type: str) -> int:
