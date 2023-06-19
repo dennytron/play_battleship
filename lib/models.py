@@ -41,7 +41,7 @@ class Cell:
         return VERTICAL_LETTERS_TO_INTS[self.location[0]]
 
 
-SIZES: dict[str, int] = {
+SHIP_TYPES: dict[str, int] = {
     "carrier": 5,
     "battleship": 4,
     "cruiser": 3,

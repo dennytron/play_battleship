@@ -1,5 +1,5 @@
 """functions managing the placement of ships"""
-from lib.models import VERTICAL_INTS_TO_LETTERS, SIZES, Ship, Cell
+from lib.models import VERTICAL_INTS_TO_LETTERS, SHIP_TYPES, Ship, Cell
 
 
 def fill_board(ships: dict[int, Ship]) -> dict[Cell, int]:
@@ -71,8 +71,8 @@ def _verify_ship_placement(
 
 def _get_size(ship_type: str) -> int:
     """fetch the number of hits a ship can take based on the ship type"""
-    assert ship_type.lower() in SIZES
-    return SIZES[ship_type]
+    assert ship_type.lower() in SHIP_TYPES
+    return SHIP_TYPES[ship_type]
 
 
 def create_ships(lines: list[list[str]]) -> dict[int, Ship]:
