@@ -1,6 +1,5 @@
 """input and output operations"""
-from lib.hit import count_remaining_ships
-from lib.models import Ship
+from lib.models import Cell, Ship
 
 
 def read_text() -> list[list[str]]:
@@ -10,6 +9,20 @@ def read_text() -> list[list[str]]:
             line.strip().split()
             for line in reader
         ]
+
+
+def _count_remaining_ships(ships: dict[int, Ship]) -> int:
+    """determine the number of ships still in play"""
+    return len([ship for ship in ships.values() if not ship.is_sunk])
+
+
+def get_shots(input_tokens: list[list[str]]) -> list[Cell]:
+    """collect all tokens with a FIRE label"""
+    return [
+        Cell(token[1])
+        for token in input_tokens
+        if token[0].upper() == "FIRE"
+    ]
 
 
 def display_ship_inventory(ships: dict[int, Ship]) -> None:
@@ -23,4 +36,4 @@ def _report_hit(attempt, result, ships):
     print(f"++ {result.kind} hit at {attempt.location}!")
     if result.is_sunk:
         print(f"++ {result.kind} sunk at {attempt.location}!")
-        print(f"++ {count_remaining_ships(ships)} ships remain!")
+        print(f"++ {_count_remaining_ships(ships)} ships remain!")
