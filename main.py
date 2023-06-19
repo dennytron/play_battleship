@@ -6,6 +6,7 @@ from lib.models import Ship, Cell
 
 
 def display_ship_inventory(ships: dict[int, Ship]) -> None:
+    """list all the ships that were placed"""
     for ship in ships.values():
         print(f"...Placed {ship.kind}")
 
