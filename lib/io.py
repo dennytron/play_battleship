@@ -48,7 +48,7 @@ def display_ship_inventory(ships: dict[int, Ship], board: dict[Cell, int]) -> No
         print(f"...Placed {ship.kind}")
 
 
-def _report_hit(attempt: Cell, result: Ship, ships: dict[int: Ship]) -> None:
+def _report_hit(attempt: Cell, result: Ship, ships: dict[int, Ship]) -> None:
     """report whether the attempt is successful"""
     print(f"++ {result.kind} hit at {attempt.location}!")
     if result.is_sunk:
