@@ -18,15 +18,16 @@ def attempt_hits(
     """given attempts at Cells, try to sink ships on the board"""
     hits: list[Cell] = []
     for attempt in attempts:
-        result: Ship | None = _try_to_hit(attempt, board, ships)
-        miss: bool = result is None or result.is_sunk
+        if attempt not in hits:
+            result: Ship | None = _try_to_hit(attempt, board, ships)
+            miss: bool = result is None or result.is_sunk
 
-        if miss:
-            print(f"-- Miss at {attempt.location}!")
-        else:
-            assert result is not None
-            result.hits += 1
-            _report_hit(attempt, result, ships)
-            hits.append(attempt)
+            if miss:
+                print(f"-- Miss at {attempt.location}!")
+            else:
+                assert result is not None
+                result.hits += 1
+                _report_hit(attempt, result, ships)
+                hits.append(attempt)
 
     return hits
